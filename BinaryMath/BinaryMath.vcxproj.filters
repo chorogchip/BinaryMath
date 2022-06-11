@@ -16,26 +16,21 @@
     <Filter Include="Data">
       <UniqueIdentifier>{f8a92558-de9b-4374-aca7-266a750f90dd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Other">
-      <UniqueIdentifier>{2249ce35-84da-48b2-be07-d8de7452b707}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BinaryMath.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Integer.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Integer.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
+    <Text Include="README.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="README.txt">
-      <Filter>Other</Filter>
-    </Text>
+    <ClInclude Include="Integer.h">
+      <Filter>Data</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

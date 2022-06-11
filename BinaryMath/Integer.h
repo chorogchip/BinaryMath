@@ -17,6 +17,9 @@ public:
     ~Integer();
 
     int getInt() const;
+    static int get_count_plus();
+    static int get_count_mult();
+    static int get_count_div();
 
     Integer operator+(const Integer& i);
     Integer operator-(const Integer& i);

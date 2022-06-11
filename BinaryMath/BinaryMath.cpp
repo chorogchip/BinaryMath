@@ -17,5 +17,17 @@ int main()
             printf("%d + %d = %d\n", i*7, j*13, (a + b).getInt());
         }
     }
+    int arr[] = { 2147483646, 2147483647, -2147483648, -2147483647};
+    int brr[] = { -1, 0, 1 };
     
+    for (int a : arr) {
+        for (int b : brr) {
+            Integer ia(a);
+            Integer ib(b);
+            printf("%d + %d = %d\n", a, b, (ia + ib).getInt());
+            printf("%d - %d = %d\n", a, b, (ia - ib).getInt());
+        }
+    }
+
+    cout << "\n count plus : " << Integer::get_count_plus() << endl;
 }

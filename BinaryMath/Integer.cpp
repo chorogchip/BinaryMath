@@ -16,6 +16,15 @@ Integer::~Integer() {}
 int Integer::getInt() const {
     return data_;
 }
+int Integer::get_count_plus() {
+    return count_plus;
+}
+int Integer::get_count_mult() {
+    return count_mult;
+}
+int Integer::get_count_div() {
+    return count_div;
+}
 
 
 Integer Integer::operator+(const Integer& i) {
@@ -70,6 +79,7 @@ int Integer::carry_lookahead_add(int a, int b, bool is_minus) {
 
         ret |= (int)(ind(p,i) != ci) << i;  // si = pi ^ ci
     }
+    count_plus++;
     return ret;
 }
 
