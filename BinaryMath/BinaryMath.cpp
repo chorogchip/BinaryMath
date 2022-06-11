@@ -3,17 +3,19 @@
 
 #include <iostream>
 
-#include "Integer.h"
+#include "Integer.hpp"
 
 using namespace std;
 using namespace bm;
+
+typedef Integer<32> myint;
 
 int main()
 {   
     for (int i = 1; i <= 9; ++i) {
         for (int j = 1; j <= 9; ++j) {
-            Integer a(i * 7);
-            Integer b(j * 13);
+            myint a(i * 7);
+            myint b(j * 13);
             printf("%d + %d = %d\n", i*7, j*13, (a + b).getInt());
         }
     }
@@ -22,12 +24,12 @@ int main()
     
     for (int a : arr) {
         for (int b : brr) {
-            Integer ia(a);
-            Integer ib(b);
+            myint ia(a);
+            myint ib(b);
             printf("%d + %d = %d\n", a, b, (ia + ib).getInt());
             printf("%d - %d = %d\n", a, b, (ia - ib).getInt());
         }
     }
 
-    cout << "\n count plus : " << Integer::get_count_plus() << endl;
+    cout << "\n count plus : " << myint::get_count_plus() << endl;
 }

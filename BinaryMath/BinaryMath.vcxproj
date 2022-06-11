@@ -128,10 +128,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BinaryMath.cpp" />
-    <ClCompile Include="Integer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Integer.h" />
+    <ClInclude Include="Integer.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.txt" />
