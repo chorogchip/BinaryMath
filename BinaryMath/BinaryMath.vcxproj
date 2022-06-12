@@ -130,6 +130,7 @@
     <ClCompile Include="BinaryMath.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Algorithms.hpp" />
     <ClInclude Include="Integer.hpp" />
     <ClInclude Include="TestAdd.hpp" />
     <ClInclude Include="TestMult.hpp" />
