@@ -16,6 +16,9 @@
     <Filter Include="Data">
       <UniqueIdentifier>{f8a92558-de9b-4374-aca7-266a750f90dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Tests">
+      <UniqueIdentifier>{3fe46515-7f50-4d13-905d-45de7d696e6c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BinaryMath.cpp">
@@ -28,6 +31,12 @@
   <ItemGroup>
     <ClInclude Include="Integer.hpp">
       <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="TestAdd.hpp">
+      <Filter>Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="TestMult.hpp">
+      <Filter>Tests</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

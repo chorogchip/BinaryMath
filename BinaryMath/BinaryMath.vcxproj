@@ -131,6 +131,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Integer.hpp" />
+    <ClInclude Include="TestAdd.hpp" />
+    <ClInclude Include="TestMult.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.txt" />
