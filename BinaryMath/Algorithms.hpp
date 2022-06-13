@@ -113,21 +113,31 @@ void Algorithms<sz>::karastuba_multiply(const bool a[sz], const bool b[sz], bool
     bool c1[sz], c0[sz], d1[sz], d0[sz];
     int i;
     for (i = 0; i < hsz0; ++i) c0[i] = a[i];
-    for (; i < size; ++i) c1[i-hsz0] = a[i];
+    for (; i < size; ++i) c1[i-hsz0] = a[i], c0[i] = false;
+    for (i = hsz1; i < size; ++i) c1[i] = false;
     for (i = 0; i < hsz0; ++i) d0[i] = b[i];
-    for (; i < size; ++i) d1[i-hsz0] = b[i];
+    for (; i < size; ++i) d1[i-hsz0] = b[i], d0[i] = false;
+    for (i = hsz1; i < size; ++i) d1[i] = false;
 
     bool r0[sz], r1[sz], r2[sz];
+    memset(r0, 0, sz);
+    memset(r1, 0, sz);
+    memset(r2, 0, sz);
     karastuba_multiply(c1, d1, r2, hsz1);
     karastuba_multiply(c0, d0, r1, hsz0);
-    carry_lookahead_add_size(c1, c0, c0, true, hsz0);
-    carry_lookahead_add_size(d0, d1, d1, true, hsz0);
+    add_size(c1, c0, c0, true, hsz1);
+    add_size(d0, d1, d1, true, hsz1);
     karastuba_multiply(c0, d1, r0, hsz1);
 
-    carry_lookahead_add_size(r1, r0, s, false, hsz1);
-    carry_lookahead_add_size(s, r1, s, false, hsz1);
-    for (int i = 0; i < hsz1; ++i) s[hsz0+i] = s[i];
-    carry_lookahead_add_size(s, r1, s, false, size);
+    add_size(r2, s, s, false, (hsz1<<1)+1);
+    for (i = 0; i < std::min((hsz1<<1)+1,sz-(hsz0<<1)); ++i) s[i+(hsz0<<1)] = s[i];
+    for(i = 0; i < std::min(hsz0<<1, sz); ++i) s[i] = false;
+    add_size(r0, s, s, false, (hsz1<<1)+1);
+    add_size(r1, s, s, false, (hsz1<<1)+1);
+    add_size(r2, s, s, false, (hsz1<<1)+1);
+    for (i = 0; i < std::min((hsz1<<1)+1,sz-hsz0); ++i) s[i+hsz0] = s[i];
+    for(i = 0; i < hsz0; ++i) s[i] = false;
+    add_size(s, r1, s, false, size);
 
     return;
 }
