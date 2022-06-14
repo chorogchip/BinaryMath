@@ -41,5 +41,8 @@
     <ClInclude Include="Algorithms.hpp">
       <Filter>Data</Filter>
     </ClInclude>
+    <ClInclude Include="TestComp.hpp">
+      <Filter>Tests</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

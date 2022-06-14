@@ -3,11 +3,20 @@
 
 #include"TestAdd.hpp"
 #include"TestMult.hpp"
+#include"TestComp.hpp"
 
 int main()
-{   
+{   /*
     tst::testMult_guguclass();
     putchar('\n');
     tst::testMult_overflow();
+    */
+
+    tst::testcomp_equal();
+    tst::testcomp_not_equal();
+    tst::testcomp_bigger();
+    tst::testcomp_smaller();
+    tst::testcomp_not_smaller();
+    tst::testcomp_not_bigger();
     getchar();
 }

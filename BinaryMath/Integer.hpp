@@ -36,10 +36,10 @@ public:
     operator int() const;
     bool operator==(const Integer<sz>& itg) const;
     bool operator!=(const Integer<sz>& itg) const;
-    /*bool operator<(const Integer<sz>& itg) const;
+    bool operator<(const Integer<sz>& itg) const;
     bool operator>(const Integer<sz>& itg) const;
     bool operator<=(const Integer<sz>& itg) const;
-    bool operator>=(const Integer<sz>& itg) const;*/
+    bool operator>=(const Integer<sz>& itg) const;
     Integer<sz> operator+(const Integer<sz>& itg) const;
     Integer<sz> operator-(const Integer<sz>& itg) const;
     Integer<sz> operator*(const Integer<sz>& itg) const;
@@ -173,15 +173,43 @@ bool Integer<sz>::operator==(const Integer<sz>& itg) const {
 template<int sz>
 bool Integer<sz>::operator!=(const Integer<sz>& itg) const {
     return !(*this == itg);
-}/*
+}
 template<int sz>
-bool Integer<sz>::operator<(const Integer<sz>& itg) const {}
+bool Integer<sz>::operator<(const Integer<sz>& itg) const {
+    if (data_[sz-1] != itg.data_[sz-1])
+        return data_[sz-1];
+    for (int i = sz - 2; i >= 0; ++i)
+        if (data_[i] != itg.data_[i])
+            return itg.data_[i];
+    return false;
+}
 template<int sz>
-bool Integer<sz>::operator>(const Integer<sz>& itg) const {}
+bool Integer<sz>::operator>(const Integer<sz>& itg) const {
+    if (data_[sz-1] != itg.data_[sz-1])
+        return itg.data_[sz-1];
+    for (int i = sz - 2; i >= 0; ++i)
+        if (data_[i] != itg.data_[i])
+            return data_[i];
+    return false;
+}
 template<int sz>
-bool Integer<sz>::operator<=(const Integer<sz>& itg) const {}
+bool Integer<sz>::operator<=(const Integer<sz>& itg) const {
+    if (data_[sz-1] != itg.data_[sz-1])
+        return data_[sz-1];
+    for (int i = sz - 2; i >= 0; ++i)
+        if (data_[i] != itg.data_[i])
+            return itg.data_[i];
+    return true;
+}
 template<int sz>
-bool Integer<sz>::operator>=(const Integer<sz>& itg) const {}*/
+bool Integer<sz>::operator>=(const Integer<sz>& itg) const {
+    if (data_[sz-1] != itg.data_[sz-1])
+        return itg.data_[sz-1];
+    for (int i = sz - 2; i >= 0; ++i)
+        if (data_[i] != itg.data_[i])
+            return data_[i];
+    return true;
+}
 
 template<int sz>
 Integer<sz> Integer<sz>::operator+(const Integer<sz>& itg) const {

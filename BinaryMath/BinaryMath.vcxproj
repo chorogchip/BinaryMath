@@ -133,6 +133,7 @@
     <ClInclude Include="Algorithms.hpp" />
     <ClInclude Include="Integer.hpp" />
     <ClInclude Include="TestAdd.hpp" />
+    <ClInclude Include="TestComp.hpp" />
     <ClInclude Include="TestMult.hpp" />
   </ItemGroup>
   <ItemGroup>
