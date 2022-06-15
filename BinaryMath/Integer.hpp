@@ -1,9 +1,7 @@
 #pragma once
-#include<iostream>
-#include<cstring>
 #include"Algorithms.hpp"
 
-namespace bm{
+namespace bm {
 
 template<int sz>
 class Integer {
@@ -52,8 +50,8 @@ public:
     Integer<sz> operator|(const Integer<sz>& itg) const;*/
     Integer<sz>& operator+=(const Integer<sz>& itg);
     Integer<sz>& operator-=(const Integer<sz>& itg);
-    /*Integer<sz>& operator*=(const Integer<sz>& itg);
-    Integer<sz>& operator/=(const Integer<sz>& itg);
+    Integer<sz>& operator*=(const Integer<sz>& itg);
+    /*Integer<sz>& operator/=(const Integer<sz>& itg);
     Integer<sz>& operator%=(const Integer<sz>& itg);
     Integer<sz>& operator<<=(const Integer<sz>& itg);
     Integer<sz>& operator>>=(const Integer<sz>& itg);
@@ -120,27 +118,27 @@ Integer<sz> Integer<sz>::operator~() const {
 template<int sz>
 Integer<sz>& Integer<sz>::operator++() {
     char arr[sz] = { 1, 0, };
-    Algorithms<sz>::add(data_, arr, data_, false);
+    Algorithms<sz>::add(arr, data_, data_, false);
     return *this;
 }
 template<int sz>
 Integer<sz>& Integer<sz>::operator--() {
     char arr[sz] = { 1, 0, };
-    Algorithms<sz>::add(data_, arr, data_, true);
+    Algorithms<sz>::add(arr, data_, data_, true);
     return *this;
 }
 template<int sz>
 Integer<sz> Integer<sz>::operator++(int) const {
     Integer<sz> ret(data_);
     char arr[sz] = { 1, 0, };
-    Algorithms<sz>::add(data_, arr, data_, false);
+    Algorithms<sz>::add(arr, data_, data_, false);
     return ret;
 }
 template<int sz>
 Integer<sz> Integer<sz>::operator--(int) const {
     Integer<sz> ret(data_);
     char arr[sz] = { 1, 0, };
-    Algorithms<sz>::add(data_, arr, data_, true);
+    Algorithms<sz>::add(arr, data_, data_, true);
     return ret;
 }
 template<int sz>
@@ -150,16 +148,16 @@ Integer<sz> Integer<sz>::operator+() const {
 }
 template<int sz>
 Integer<sz> Integer<sz>::operator-() const {
-    Integer<sz> ret(~*this);
-    char arr[sz] = { 1, 0, };
-    Algorithms<sz>::add(data_, arr, data_, false);
+    Integer<sz> ret(data_);
+    char arr[sz] = { 0, 0, };
+    Algorithms<sz>::add(arr, ret, ret, true);
     return ret;
 }
 template<int sz>
 Integer<sz>::operator int() const {
     int ret = 0;
-    int msz = std::max(sz, (int)sizeof(int)*8);
-    for (int i = 0; i < msz; ++i) {
+    int msz = std::min(sz, (int)sizeof(int)<<3);
+    for (int i = 0; i < sz; ++i) {
         ret |= (int)data_[i] << i;
     }
     return ret;
@@ -172,13 +170,15 @@ bool Integer<sz>::operator==(const Integer<sz>& itg) const {
 }
 template<int sz>
 bool Integer<sz>::operator!=(const Integer<sz>& itg) const {
-    return !(*this == itg);
+    for (int i = 0; i < sz; ++i)
+        if (data_[i] != itg.data_[i]) return true;
+    return false;
 }
 template<int sz>
 bool Integer<sz>::operator<(const Integer<sz>& itg) const {
     if (data_[sz-1] != itg.data_[sz-1])
         return data_[sz-1];
-    for (int i = sz - 2; i >= 0; ++i)
+    for (int i = sz - 2; i >= 0; --i)
         if (data_[i] != itg.data_[i])
             return itg.data_[i];
     return false;
@@ -187,7 +187,7 @@ template<int sz>
 bool Integer<sz>::operator>(const Integer<sz>& itg) const {
     if (data_[sz-1] != itg.data_[sz-1])
         return itg.data_[sz-1];
-    for (int i = sz - 2; i >= 0; ++i)
+    for (int i = sz - 2; i >= 0; --i)
         if (data_[i] != itg.data_[i])
             return data_[i];
     return false;
@@ -196,7 +196,7 @@ template<int sz>
 bool Integer<sz>::operator<=(const Integer<sz>& itg) const {
     if (data_[sz-1] != itg.data_[sz-1])
         return data_[sz-1];
-    for (int i = sz - 2; i >= 0; ++i)
+    for (int i = sz - 2; i >= 0; --i)
         if (data_[i] != itg.data_[i])
             return itg.data_[i];
     return true;
@@ -205,7 +205,7 @@ template<int sz>
 bool Integer<sz>::operator>=(const Integer<sz>& itg) const {
     if (data_[sz-1] != itg.data_[sz-1])
         return itg.data_[sz-1];
-    for (int i = sz - 2; i >= 0; ++i)
+    for (int i = sz - 2; i >= 0; --i)
         if (data_[i] != itg.data_[i])
             return data_[i];
     return true;
@@ -227,7 +227,7 @@ Integer<sz> Integer<sz>::operator-(const Integer<sz>& itg) const {
 template<int sz>
 Integer<sz> Integer<sz>::operator*(const Integer<sz>& itg) const {
     Integer<sz> ret;
-    Algorithms<sz>::mult(data_, itg.data_, ret.data_, sz);
+    Algorithms<sz>::mult(data_, itg.data_, ret.data_);
     return ret;
 }
 
@@ -239,6 +239,11 @@ Integer<sz>& Integer<sz>::operator+=(const Integer<sz>& itg) {
 template<int sz>
 Integer<sz>& Integer<sz>::operator-=(const Integer<sz>& itg) {
     Algorithms<sz>::add(data_, itg.data_, data_, true);
+    return *this;
+}
+template<int sz>
+Integer<sz>& Integer<sz>::operator*=(const Integer<sz>& itg) {
+    Algorithms<sz>::mult(data_, itg.data_, data_);
     return *this;
 }
 

@@ -8,7 +8,7 @@ class Algorithms {
 public:
     static void add(const bool a[sz], const bool b[sz], bool s[sz], bool is_minus);
     static void add_size(const bool a[sz], const bool b[sz], bool s[sz], bool is_minus, int size);
-    static void mult(const bool a[sz], const bool b[sz], bool s[sz], int size);
+    static void mult(const bool a[sz], const bool b[sz], bool s[sz]);
 
 private:
     static void carry_lookahead_add(const bool a[sz], const bool b[sz], bool s[sz], bool is_minus);
@@ -27,8 +27,8 @@ void Algorithms<sz>::add_size(const bool a[sz], const bool b[sz], bool s[sz], bo
 }
 
 template<int sz>
-void Algorithms<sz>::mult(const bool a[sz], const bool b[sz], bool s[sz], int size) {
-    karastuba_multiply(a, b, s, size);
+void Algorithms<sz>::mult(const bool a[sz], const bool b[sz], bool s[sz]) {
+    karastuba_multiply(a, b, s, sz);
 }
 
 template<int sz>
@@ -73,7 +73,7 @@ void Algorithms<sz>::carry_lookahead_add(const bool a[sz], const bool b[sz], boo
 template<int sz>
 void Algorithms<sz>::carry_lookahead_add_size(const bool a[sz], const bool b[sz], bool s[sz], bool is_minus, int size) {
     size = std::min(size + 1, sz);
-    bool b_[sz], p[sz], g[sz], c[sz];
+    bool b_[sz] = {0,}, p[sz] = {0,}, g[sz] = {0,}, c[sz] = {0,};
     if (is_minus) for (int i = 0; i < sz; ++i) b_[i] = !b[i];
     else for (int i = 0; i < sz; ++i) b_[i] = b[i];
 
